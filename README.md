@@ -9,7 +9,6 @@ A backend server for ChatterBox, a social discussion platform inspired by Reddit
 ## Members
 
 - James Bebarski (GitHub: [ssloth1](https://github.com/ssloth1))
-- Monisha Dhana Vijeya (GitHub: [MonRani](https://github.com/MonRani))
 - Mansi Negi (GitHub: [Mansi142000](https://github.com/Mansi142000))
 - Neil Israni (GitHub: [NeilIsrani](https://github.com/NeilIsrani))
 
