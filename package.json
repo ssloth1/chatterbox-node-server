@@ -1,0 +1,34 @@
+{
+  "type": "module",
+  "name": "chatterbox-node-server",
+  "version": "1.0.0",
+  "description": "Node.js HTTP Web server for Chatterbox application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node App.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssloth1/chatterbox-node-server.git"
+  },
+  "keywords": [
+    "Node",
+    "REST",
+    "Server",
+    "HTTP",
+    "Web",
+    "Development",
+    "CS5610"
+  ],
+  "author": "Jim Bebarski, Mansi Negi, Neil Israni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssloth1/chatterbox-node-server/issues"
+  },
+  "homepage": "https://github.com/ssloth1/chatterbox-node-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
