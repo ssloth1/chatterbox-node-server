@@ -1,6 +1,9 @@
 # Chatterbox Node Server
 A backend server for ChatterBox, a social discussion platform inspired by Reddit. Built with Node.js and Express, it manages user authentication, post creation and management, and real-time updates using MongoDB for data storage.
 
+## Deployed @
+- **Chatterbox Node Server**: [Link](https://chatterbox-node-server.onrender.com)
+
 ## Project Repositories
 
 - **React App**: [ChatterBox React App](https://github.com/your-org/chatterbox-react-app)
