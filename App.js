@@ -2,10 +2,18 @@ import express from 'express';
 import cors from 'cors';
 
 const app = express();
+
 app.use(cors());
 
-import Test from './Test/index.js';
+// Middleware to log requests
+app.use((req, res, next) => {
+	console.log(`${req.method} ${req.url}`);
+	next();
+});
 
+// Import routes
+import Test from './Test/index.js';
 Test(app);
 
-app.listen(process.env.PORT || 4000, () => console.log('Server running on port 4000!'));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));
