@@ -3,6 +3,7 @@ A backend server for ChatterBox, a social discussion platform inspired by Reddit
 
 ## Deployed @
 - **Chatterbox Node Server**: [Link](https://chatterbox-node-server.onrender.com)
+- **Chatterbox React Application**: [Link](https://chatterbox-react-app.netlify.app/)
 
 ## Project Repositories
 
