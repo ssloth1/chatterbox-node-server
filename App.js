@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import session from 'express-session';
-
+import CourseRoutes from "./Kanbas/Posts/routes.js";
 import Test from './Test/index.js';
 import UserRoutes from './Users/routes.js';
 
@@ -51,7 +51,7 @@ app.use((req, res, next) => { console.log(`${req.method} ${req.url}`); next(); }
 // Import routes
 Test(app);
 UserRoutes(app);
-
+CourseRoutes(app);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));
