@@ -10,18 +10,19 @@ const userSchema = new mongoose.Schema({
 		required: true
 	},
 	firstName: String,
-	email: String,
 	lastName: String,
+	email: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	phone: String,
 	dob: Date,
 	role: {
 		type: String,
 		enum: ["OWNER", "USER", "ADMIN"],
 		default: "USER",
 	},
-	loginId: String,
-	section: String,
-	lastActivity: Date,
-	totalActivity: String,
 },
 	{ collection: "users" }
 );

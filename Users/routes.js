@@ -1,6 +1,9 @@
 import * as dao from './dao.js';
 
+let currentUser = null;
+
 export default function UserRoutes(app) {
+
 
 	// create user
 	const createUser = async (req, res) => {
@@ -94,9 +97,8 @@ export default function UserRoutes(app) {
 	};
 	app.post("/api/users/profile", profile);
 
-	// signout
 	const signout = (req, res) => {
-		req.session.destroy();
+		currentUser = null;
 		res.sendStatus(200);
 	};
 	app.post("/api/users/signout", signout);
