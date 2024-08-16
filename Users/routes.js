@@ -60,17 +60,22 @@ export default function UserRoutes(app) {
 
 	// signin
 	const signin = async (req, res) => {
-		const { username, password } = req.body;
-		const currentUser = await dao.findUserByCredentials(username, password);
+		const { identifier, password } = req.body; // uses 'identifier' for email or username sign ins
+		console.log("Attempting to sign in with identifier:", identifier, "password:", password);
+
+		const currentUser = await dao.findUserByCredentials(identifier, password);
+		console.log("UserRoutes.signin: currentUser:", currentUser);
+
 		if (currentUser) {
 			req.session["currentUser"] = currentUser;
-			//console.log("UserRoutes.signin: currentUser:", currentUser);
 			res.json(currentUser);
 		} else {
-			res.status(401).json({ message: "Unable to login. Try again later." });
+			res.status(401).json({ message: "Invalid credentials." });
 		}
 	};
+
 	app.post("/api/users/signin", signin);
+
 
 	// signup
 	const signup = async (req, res) => {
@@ -80,26 +85,29 @@ export default function UserRoutes(app) {
 			return;
 		}
 		const currentUser = await dao.createUser(req.body);
-		//console.log("UserRoutes.signup: currentUser:", currentUser);
+		console.log("UserRoutes.signup: currentUser:", currentUser);
 		req.session["currentUser"] = currentUser;
 		res.json(currentUser);
 	};
 	app.post("/api/users/signup", signup);
 
-	// profile
-	const profile = (req, res) => {
-		const currentUser = req.session["currentUser"];
-		if (!currentUser) {
-			res.sendStatus(401);
-			return;
+	// profile, get the current user profile/details
+	const profile = async (req, res) => {
+		const sessionUser = req.session["currentUser"];
+		if (!sessionUser) {
+			return res.sendStatus(401);
 		}
-		res.json(currentUser);
+
+		try {
+			const user = await dao.findUserById(sessionUser._id);
+			if (!user) {
+				return res.sendStatus(404);
+			}
+			res.json(user);
+		} catch (err) {
+			console.error("Error fetching profile:", err);
+			res.sendStatus(500);
+		}
 	};
 	app.post("/api/users/profile", profile);
-
-	const signout = (req, res) => {
-		currentUser = null;
-		res.sendStatus(200);
-	};
-	app.post("/api/users/signout", signout);
 }
