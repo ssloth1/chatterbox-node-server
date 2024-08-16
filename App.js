@@ -7,10 +7,14 @@ import Test from './Test/index.js';
 import UserRoutes from './Users/routes.js';
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
+
+// Connect to MongoDB
 mongoose.connect(CONNECTION_STRING, {
 	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
+	useUnifiedTopology: true,
+})
+	.then(() => console.log("Connected to MongoDB successfully"))
+	.catch(err => console.error("Failed to connect to MongoDB:", err));
 
 const app = express();
 
