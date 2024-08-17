@@ -2,8 +2,9 @@ import model from "./model.js";
 import pkg from 'mongodb';
 const { ObjectId } = pkg;
 
-export const createTopic = (topic) => {
-    return model.create(topic);
+export const createTopic = async (topic) => {
+    const res =  await model.create(topic);
+    return res;
 }
 
 export const findAllTopics = async (searchString = '') => {

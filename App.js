@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 import TopicRoutes from "./Topic/routes.js";
 import cors from "cors";   // Import CORS package
 import "dotenv/config";
-
+import bodyParser from "body-parser";
 const CONNECTION_STRING = "mongodb://127.0.0.1:27017/Chatterbox";
-
+ 
 // Connect to MongoDB
 mongoose.connect(CONNECTION_STRING, {
   useNewUrlParser: true,
@@ -20,6 +20,9 @@ const app = express();
 
 // Apply CORS middleware to enable CORS for all routes
 app.use(cors());
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
+
 
 // Initialize TopicRoutes
 TopicRoutes(app);

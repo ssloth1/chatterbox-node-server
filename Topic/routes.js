@@ -6,7 +6,9 @@ import {
   findTopicById,
 } from "./dao.js";
 export default function TopicRoutes(app) {
+
   app.post("/api/topics", async (req, res) => {
+    //console.log(req.body);
     const topic = { ...req.body, _id: new Date().getTime().toString() };
     await createTopic(topic);
     res.send(topic);
@@ -18,7 +20,6 @@ export default function TopicRoutes(app) {
     try {
       // Pass the searchText to findAllTopics and send the result
       const topics = await findAllTopics(searchText);
-      console.log(topics)
   
       res.send(topics);
     } catch (error) {
