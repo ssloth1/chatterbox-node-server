@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import TopicRoutes from "./Topic/routes.js";
+import PostRoutes from "./Post/routes.js";
 import cors from "cors";   // Import CORS package
 import "dotenv/config";
 import bodyParser from "body-parser";
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 
 // Initialize TopicRoutes
 TopicRoutes(app);
+PostRoutes(app);
 
 // Start the server
 const PORT = process.env.PORT || 4000;

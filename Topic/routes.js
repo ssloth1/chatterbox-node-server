@@ -43,7 +43,6 @@ export default function TopicRoutes(app) {
 
   app.get("/api/topics/:id", async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     const topic = await findTopicById(id);
     res.send(topic);
   });
