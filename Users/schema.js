@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
 	dob: Date,
 	role: {
 		type: String,
-		enum: ["OWNER", "USER", "ADMIN"],
+		enum: ["STAFF", "USER", "MODERATOR"],
 		default: "USER",
 	},
 },

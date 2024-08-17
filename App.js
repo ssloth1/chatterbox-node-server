@@ -7,6 +7,7 @@ import Test from './Test/index.js';
 import UserRoutes from './Users/routes.js';
 import TopicRoutes from './Topic/routes.js';
 import PostRoutes from './Posts/routes.js';
+import CommentRoutes from './Comments/routes.js';
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
 
@@ -62,9 +63,10 @@ app.use((req, res, next) => {
 // Import routes
 Test(app);
 UserRoutes(app);
+
 TopicRoutes(app);
 PostRoutes(app);
-
+CommentRoutes(app);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));
