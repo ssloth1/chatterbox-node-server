@@ -1,3 +1,5 @@
+// chatterbox-node-server/Topics/model.js
+
 import mongoose from 'mongoose';
 import schema from './schema.js';
 

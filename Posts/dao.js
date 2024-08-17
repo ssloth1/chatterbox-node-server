@@ -1,3 +1,4 @@
+// chatterbox-node-server/Posts/dao.js
 import model from './model.js';
 
 export const createPost = (post) => model.create(post);

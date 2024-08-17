@@ -1,3 +1,4 @@
+// chatterbox-node-server/Comments/dao.js
 import model from './model.js';
 
 export const createComment = (comment) => model.create(comment);

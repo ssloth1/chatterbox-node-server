@@ -1,3 +1,4 @@
+// chatterbox-node-server/Comments/schema.js
 import mongoose from 'mongoose';
 
 const commentSchema = new mongoose.Schema({

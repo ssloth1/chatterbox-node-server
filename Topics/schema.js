@@ -1,3 +1,5 @@
+// chatterbox-node-server/Topics/schema.js
+
 import mongoose from 'mongoose';
 
 const topicSchema = new mongoose.Schema({
