@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import Test from './Test/index.js';
 import UserRoutes from './Users/routes.js';
-import TopicRoutes from './Topic/routes.js';
+import TopicRoutes from './Topics/routes.js';
 import PostRoutes from './Posts/routes.js';
 import CommentRoutes from './Comments/routes.js';
 
