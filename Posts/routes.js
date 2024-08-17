@@ -1,32 +1,32 @@
-import {
-	createPost,
-	findAllPosts,
-	deletePost,
-	updatePost,
-	//findPostById,
-} from "./dao.js";
-export default function TopicRoutes(app) {
-	app.post("/api/posts", async (req, res) => {
-		const post = { ...req.body, _id: new Date().getTime().toString() };
-		await createPost(post);
-		res.send(post);
-	});
+import * as dao from './dao.js';
 
-	app.get("/api/posts", async (req, res) => {
-		// Get the search text from query parameters, defaulting to an empty string if not provided
-		const posts = await findAllPosts();
-		console.log(posts)
-		res.json(posts);
-	});
-
-	app.delete("/api/posts/:pid", async (req, res) => {
-		await deletePost(req.params.pid);
-		res.sendStatus(204);
-	});
-
-	app.put("/api/posts/:pid", async (req, res) => {
-		const post = await updatePost(req.params.id, req.body);
+export default function PostRoutes(app) {
+	app.post('/api/posts', async (req, res) => {
+		const post = await dao.createPost(req.body);
 		res.json(post);
 	});
 
+	// Get All Posts
+	app.get('/api/posts', async (req, res) => {
+		const posts = await dao.findAllPosts();
+		res.json(posts);
+	});
+
+	// Get Post by ID
+	app.get('/api/posts/:postId', async (req, res) => {
+		const post = await dao.findPostById(req.params.postId);
+		res.json(post);
+	});
+
+	// Update Post
+	app.put('/api/posts/:postId', async (req, res) => {
+		const status = await dao.updatePost(req.params.postId, req.body);
+		res.json(status);
+	});
+
+	// Delete Post
+	app.delete('/api/posts/:postId', async (req, res) => {
+		const status = await dao.deletePost(req.params.postId);
+		res.json(status);
+	});
 }

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
 import schema from './schema.js';
 
-const model = mongoose.model('Post', schema);
+const model = mongoose.model('Topic', schema);
 export default model;
