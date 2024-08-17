@@ -1,21 +1,11 @@
 import mongoose from "mongoose";
+
 const userSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		required: true,
-		unique: true
-	},
-	password: {
-		type: String,
-		required: true
-	},
+	username: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
 	firstName: String,
 	lastName: String,
-	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
+	email: { type: String, required: true, unique: true },
 	phone: String,
 	dob: Date,
 	role: {
@@ -23,7 +13,6 @@ const userSchema = new mongoose.Schema({
 		enum: ["STAFF", "USER", "MODERATOR"],
 		default: "USER",
 	},
-},
-	{ collection: "users" }
-);
+}, { collection: "users" });
+
 export default userSchema;
