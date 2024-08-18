@@ -8,6 +8,7 @@ import UserRoutes from './Users/routes.js';
 import TopicRoutes from './Topics/routes.js';
 import PostRoutes from './Posts/routes.js';
 import CommentRoutes from './Comments/routes.js';
+import HoroscopeRoutes from './Horoscope/routes.js';
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/chatterbox";
 
@@ -35,7 +36,7 @@ app.use(
 	cors({
 		credentials: true,
 		origin: (origin, callback) => {
-			// Allow requests with no origin (e.g., mobile apps, Postman)
+			// Allow requests with no origin (Postman)
 			if (!origin) return callback(null, true);
 			if (allowedOrigins.includes(origin)) {
 				callback(null, true);
@@ -76,6 +77,9 @@ UserRoutes(app);
 TopicRoutes(app);
 PostRoutes(app);
 CommentRoutes(app);
+
+// for our external api requirement for the project
+app.use('/api/horoscope', HoroscopeRoutes);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));
