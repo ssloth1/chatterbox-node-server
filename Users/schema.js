@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
 	lastName: String,
 
 	// made this non-required so we can have anonymous users
-	email: { type: String, unique: true, sparse: true },
+	email: { type: String, sparse: true },
 	phone: String,
 	dob: Date,
 	role: {

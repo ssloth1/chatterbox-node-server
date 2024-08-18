@@ -112,7 +112,7 @@ export default function UserRoutes(app) {
 	app.post("/api/users/profile", profile);
 
 
-	// create an anonymous user
+	// Create anonymous user
 	const createAnonymousUser = async (req, res) => {
 		try {
 			const guestUser = await dao.createAnonymousUser();
@@ -124,4 +124,17 @@ export default function UserRoutes(app) {
 		}
 	};
 	app.post("/api/users/anonymous", createAnonymousUser);
+
+
+	const signout = (req, res) => {
+		req.session.destroy((err) => {
+			if (err) {
+				return res.status(500).json({ message: "Failed to sign out." });
+			}
+			res.status(200).json({ message: "Signed out successfully." });
+		});
+	};
+	app.post("/api/users/signout", signout);
 }
+
+

@@ -9,7 +9,8 @@ export const createUser = (user) => {
 
 export const createAnonymousUser = () => {
 	const guestUser = {
-		username: `Guest-${uuidv4()}`,
+		username: `Guest-${uuidv4()}`, // Unique username
+		email: `guest_${uuidv4()}@guest.com`, // Unique email
 		password: "password",
 		role: "GUEST",
 		isGuest: true,
