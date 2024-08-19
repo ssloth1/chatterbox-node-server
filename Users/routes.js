@@ -23,22 +23,37 @@ export default function UserRoutes(app) {
 
 	// find all users
 	const findAllUsers = async (req, res) => {
-		const { role } = req.query;
-		if (role) {
-			const users = await dao.findUsersByRole(role);
-			//console.log("UserRoutes.findAllUsers: users:", users);
+		const { role, name } = req.query;  // Extract both 'role' and 'name' from query parameters
+
+		try {
+			let users;
+
+			// If 'role' is provided, find users by role
+			if (role) {
+				users = await dao.findUsersByRole(role);
+				//console.log("UserRoutes.findAllUsers: users:", users);
+				res.json(users);
+				return;
+			}
+
+			// If 'name' is provided, find users by partial name
+			if (name) {
+				users = await dao.findUsersByPartialName(name);
+				//console.log("UserRoutes.findAllUsers: users:", users);
+				res.json(users);
+				return;
+			}
+
+			// If neither 'role' nor 'name' is provided, find all users
+			users = await dao.findAllUsers();
 			res.json(users);
-			return;
+
+		} catch (error) {
+			console.error("Failed to fetch users:", error);
+			res.status(500).json({ message: "Failed to fetch users" });
 		}
-		if (name) {
-			const users = await dao.findUsersByPartialName(name);
-			//console.log("UserRoutes.findAllUsers: users:", users);
-			res.json(users);
-			return;
-		}
-		const users = await dao.findAllUsers();
-		res.json(users);
 	};
+
 	app.get("/api/users", findAllUsers);
 
 	// find user by id
