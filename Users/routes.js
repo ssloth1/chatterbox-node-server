@@ -1,6 +1,6 @@
 import * as dao from './dao.js';
 
-let currentUser = null;
+//let currentUser = null;
 
 export default function UserRoutes(app) {
 
@@ -23,37 +23,23 @@ export default function UserRoutes(app) {
 
 	// find all users
 	const findAllUsers = async (req, res) => {
-		const { role, name } = req.query;  // Extract both 'role' and 'name' from query parameters
-
 		try {
+			const { name } = req.query;
 			let users;
-
-			// If 'role' is provided, find users by role
-			if (role) {
-				users = await dao.findUsersByRole(role);
-				//console.log("UserRoutes.findAllUsers: users:", users);
-				res.json(users);
-				return;
-			}
-
-			// If 'name' is provided, find users by partial name
+	
 			if (name) {
 				users = await dao.findUsersByPartialName(name);
-				//console.log("UserRoutes.findAllUsers: users:", users);
-				res.json(users);
-				return;
+			} else {
+				users = await dao.findAllUsers();
 			}
-
-			// If neither 'role' nor 'name' is provided, find all users
-			users = await dao.findAllUsers();
+	
 			res.json(users);
-
 		} catch (error) {
-			console.error("Failed to fetch users:", error);
-			res.status(500).json({ message: "Failed to fetch users" });
+			console.error('Error in findAllUsers:', error);
+			res.status(500).json({ error: 'An error occurred while fetching users' });
 		}
 	};
-
+	
 	app.get("/api/users", findAllUsers);
 
 	// find user by id
@@ -108,13 +94,21 @@ export default function UserRoutes(app) {
 
 	// profile, get the current user profile/details
 	const profile = async (req, res) => {
-		const sessionUser = req.session["currentUser"];
-		if (!sessionUser) {
-			return res.sendStatus(401);
-		}
+		// const sessionUser = req.session["currentUser"];
+		// if (!sessionUser) {
+		// 	return res.sendStatus(401);
+		// }
 
 		try {
-			const user = await dao.findUserById(sessionUser._id);
+			const userId = req.body.userId; // Get userId from query parameter
+		
+			let user;
+			if (userId) {
+			  // Fetch user by ID if userId is provided
+			   user = await dao.findUserById(userId);
+			} else {
+			   user = await dao.findUserById('66c02f502fce83791ce2d389');
+			}
 			if (!user) {
 				return res.sendStatus(404);
 			}
