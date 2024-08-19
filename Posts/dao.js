@@ -5,15 +5,16 @@ export const findAllPosts = () => model.find();
 
 export const findPostforTopic = (topicId, search) => {
 	if (search) {
+
 		return model.find({
-			topic: topicId,
+			topicID: topicId,
 			$or: [
 				{ title: { $regex: search, $options: "i" } },
 				{ content: { $regex: search, $options: "i" } }
 			]
 		});
 	} else {
-		return model.find({ topic: topicId });
+		return model.find({ topicID: topicId });
 	}
 };
 

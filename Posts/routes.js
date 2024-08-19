@@ -6,10 +6,14 @@ export default function PostRoutes(app) {
 		const { tid } = req.params;
 		const post = {
 			...req.body,
-			topic: tid,
-			_id: new Date().getTime().toString(),
+			topicID: tid,
+			likes: 0,
+			postDate: new Date()
+
+
 		};
 		await dao.createPost(post);
+	
 		res.json(post);
 	});
 
@@ -17,7 +21,9 @@ export default function PostRoutes(app) {
 		const { tid } = req.params;
 		const { search } = req.query;
 		try {
+		
 			const posts = await dao.findPostforTopic(tid, search);
+			console.log(posts);
 			res.json(posts);
 		} catch (error) {
 			console.error("Failed to fetch posts:", error);
