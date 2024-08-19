@@ -18,6 +18,7 @@ A backend server for ChatterBox, a social discussion platform inspired by Reddit
 
 ## Chatterbox Relational Schema
 ![Schema Diagram](https://github.com/ssloth1/chatterbox-node-server/blob/main/wiki/relational-schema.png)
+![Entity-Relationship-Diagram](https://github.com/ssloth1/chatterbox-node-server/blob/main/wiki/entity-relationship-diagram.png)
 
 ## About
 
