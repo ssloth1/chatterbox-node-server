@@ -16,8 +16,10 @@ A backend server for ChatterBox, a social discussion platform inspired by Reddit
 - Mansi Negi (GitHub: [Mansi142000](https://github.com/Mansi142000))
 - Neil Israni (GitHub: [NeilIsrani](https://github.com/NeilIsrani))
 
-## Chatterbox Relational Schema
+## Chatterbox Diagrams
+### Schema Diagram
 ![Schema Diagram](https://github.com/ssloth1/chatterbox-node-server/blob/main/wiki/relational-schema.png)
+### Entity-Relationship-Diagram
 ![Entity-Relationship-Diagram](https://github.com/ssloth1/chatterbox-node-server/blob/main/wiki/entity-relationship-diagram.png)
 
 ## About
