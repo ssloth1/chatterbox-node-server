@@ -9,8 +9,8 @@ export const findPostforTopic = (topicId, search) => {
 		return model.find({
 			topicID: topicId,
 			$or: [
-				{ title: { $regex: search, $options: "i" } },
-				{ content: { $regex: search, $options: "i" } }
+				{ postTitle: { $regex: search, $options: "i" } },
+				{ postDesc: { $regex: search, $options: "i" } }
 			]
 		});
 	} else {
