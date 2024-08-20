@@ -13,15 +13,16 @@ export default function PostRoutes(app) {
 
 		};
 		await dao.createPost(post);
-	
+
 		res.json(post);
 	});
 
+	// Get all posts for a topic
 	app.get("/api/topics/:tid/posts", async (req, res) => {
 		const { tid } = req.params;
 		const { search } = req.query;
 		try {
-		
+			// Fetch posts for the topic
 			const posts = await dao.findPostforTopic(tid, search);
 			console.log(posts);
 			res.json(posts);

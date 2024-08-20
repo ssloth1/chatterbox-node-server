@@ -7,12 +7,13 @@ export const createUser = (user) => {
 	return model.create(user);
 }
 
+// essentially just creates a throwaway user.
 export const createAnonymousUser = () => {
 	const guestUser = {
 		username: `Guest-${uuidv4()}`, // Unique username
 		email: `guest_${uuidv4()}@guest.com`, // Unique email
-		password: "password",
-		role: "GUEST",
+		password: "password", // Default password
+		role: "GUEST", // Guest role assigned
 		isGuest: true,
 	};
 
@@ -37,7 +38,7 @@ export const findUserByCredentials = async (identifier, password) => {
 	if (user && user.password === password) {
 		return user;
 	}
-
+	// Return null if the user does not exist or the password does not match
 	return null;
 };
 
